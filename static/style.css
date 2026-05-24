@@ -138,6 +138,27 @@ input:focus{
         0 0 25px rgba(34,211,238,0.2);
 }
 
+.input-wrapper{
+    position:relative;
+}
+
+.toggle-password{
+    position:absolute;
+    right:22px;
+    top:50%;
+    transform:translateY(-50%);
+    cursor:pointer;
+    font-size:24px;
+    opacity:0.7;
+    transition:0.3s ease;
+    user-select:none;
+}
+
+.toggle-password:hover{
+    opacity:1;
+    transform:translateY(-50%) scale(1.1);
+}
+
 button{
     padding:20px;
     border:none;
@@ -238,7 +259,7 @@ button:hover{
 
 .metric-grid{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    grid-template-columns:repeat(2,1fr);
     gap:16px;
     margin-bottom:35px;
 }

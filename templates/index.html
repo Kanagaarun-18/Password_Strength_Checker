@@ -154,6 +154,13 @@
                         required
                     >
 
+                    <span
+                        class="toggle-password"
+                        id="togglePassword"
+                    >
+                        👁
+                    </span>
+
                 </div>
 
                 <div
@@ -311,6 +318,32 @@ faqQuestions.forEach(question => {
         faqItem.classList.toggle("active");
 
     });
+
+});
+
+const passwordInput =
+    document.getElementById("passwordInput");
+
+const togglePassword =
+    document.getElementById("togglePassword");
+
+togglePassword.addEventListener("click", () => {
+
+    if(passwordInput.type === "password"){
+
+        passwordInput.type = "text";
+
+        togglePassword.textContent = "🙈";
+
+    }
+
+    else{
+
+        passwordInput.type = "password";
+
+        togglePassword.textContent = "👁";
+
+    }
 
 });
 
