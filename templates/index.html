@@ -2,91 +2,150 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
     <title>Password Strength Analyzer</title>
+
     <link
         rel="stylesheet"
-        href="{{ url_for('static', filename='style.css') }}">
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+    <link
+        rel="icon"
+        type="image/png"
+        href="{{ url_for('static', filename='favicon.png') }}"
+    >
+
 </head>
 
 <body>
+
+    <div id="particles"></div>
+
     <div class="main">
+
         <h1>Password Strength Analyzer</h1>
+
         <p class="subtitle">
             Think your password is strong? Let's put it to the test!
             <br>
             Protect your privacy with our zero-knowledge analyzer.
         </p>
+
     </div>
 
-    <div class="main">        
+    <div class="main">
+
         {% if result %}
+
         <div class="result">
+
             <h2>Security Report</h2>
+
             <div class="strength-bar-container">
+
                 <div class="strength-label">
                     Strength: {{ result.strength }}
                 </div>
+
                 <div
                     class="strength-bar"
-                    style="width: {{ result.score * 10 }}%;"></div>
+                    style="width: {{ result.score * 10 }}%;"
+                ></div>
+
             </div>
+
             <div class="metric-grid">
 
                 <div class="metric-card">
+
                     <div class="metric-title">
                         Security Score
                     </div>
+
                     <div class="metric-value">
                         {{ result.score }}/10
                     </div>
+
                 </div>
 
                 <div class="metric-card">
+
                     <div class="metric-title">
                         Entropy
                     </div>
+
                     <div class="metric-value">
                         {{ result.entropy }}
                     </div>
+
                 </div>
 
                 <div class="metric-card">
+
                     <div class="metric-title">
                         Crack Time
                     </div>
+
                     <div class="metric-value">
                         {{ result.crack_time }}
                     </div>
+
                 </div>
 
                 <div class="metric-card">
+
                     <div class="metric-title">
                         Approximate Guesses
                     </div>
+
                     <div class="metric-value">
                         {{ result.guesses }}
                     </div>
+
                 </div>
+
             </div>
 
             <div class="feedback-section">
+
                 <h3>Security Feedback</h3>
+
                 <div class="feedback-list">
+
                     {% for item in result.feedback %}
+
                     <div class="feedback-item">
                         {{ item }}
                     </div>
+
                     {% endfor %}
+
                 </div>
+
             </div>
+
         </div>
+
         {% endif %}
 
         <div class="password-form-container">
-            <form class="password-form" action="/" method="POST">
+
+            <form
+                class="password-form"
+                action="/"
+                method="POST"
+            >
+
                 <div class="input-wrapper">
+
                     <input
                         type="password"
                         name="pwd"
@@ -94,57 +153,91 @@
                         placeholder="Enter your password"
                         required
                     >
+
                 </div>
+
+                <div
+                    class="loader"
+                    id="loader"
+                ></div>
 
                 <button type="submit">
                     Check Strength
                 </button>
+
             </form>
+
         </div>
+
     </div>
 
     <div class="main">
+
         <div class="faq-section">
+
             <h2>Security Metrics Explained</h2>
+
             <div class="faq-item">
+
                 <button class="faq-question">
                     What is Entropy?
                 </button>
+
                 <div class="faq-answer">
+
                     <p>
                         Entropy measures password randomness based on
                         length and character diversity.
                         Higher entropy means more possible combinations
                         and stronger resistance against brute-force attacks.
                     </p>
+
                 </div>
+
             </div>
 
             <div class="faq-item">
+
                 <button class="faq-question">
                     How is Strength Calculated?
                 </button>
+
                 <div class="faq-answer">
+
                     <p>
                         The analyzer combines:
                     </p>
+
                     <ul>
+
                         <li>Password length</li>
+
                         <li>Uppercase and lowercase letters</li>
+
                         <li>Numbers and special symbols</li>
+
                         <li>Entropy calculations</li>
+
                         <li>Sequential pattern detection</li>
+
                         <li>Repeated character detection</li>
+
                         <li>zxcvbn attack modeling</li>
+
                     </ul>
+
                 </div>
+
             </div>
 
             <div class="faq-item">
+
                 <button class="faq-question">
                     What is Estimated Crack Time?
                 </button>
+
                 <div class="faq-answer">
+
                     <p>
                         Crack time estimates how long attackers
                         may need to guess a password using
@@ -152,48 +245,102 @@
                         leaked password databases, and
                         intelligent pattern analysis.
                     </p>
+
                 </div>
+
             </div>
 
             <div class="faq-item">
+
                 <button class="faq-question">
                     Why are Common Passwords Dangerous?
                 </button>
+
                 <div class="faq-answer">
+
                     <p>
                         Common passwords are already stored in
                         attacker databases and are tested first
                         during password attacks.
                     </p>
+
                 </div>
+
             </div>
 
             <div class="faq-item">
+
                 <button class="faq-question">
                     Is My Password Stored?
                 </button>
+
                 <div class="faq-answer">
+
                     <p>
                         No. Passwords are analyzed temporarily
                         in memory and are never stored,
                         logged, or saved to databases.
                     </p>
+
                 </div>
+
             </div>
+
         </div>
+
     </div>
 
-    <script>
-        const faqQuestions =
-            document.querySelectorAll(".faq-question");
-        faqQuestions.forEach(question => {
-            question.addEventListener("click", () => {
-                const faqItem =
-                    question.parentElement;
-                faqItem.classList.toggle("active");
-            });
-        });
-    </script>
+    <footer class="footer">
+
+        Built with Flask + zxcvbn
+
+    </footer>
+
+<script>
+
+const faqQuestions =
+    document.querySelectorAll(".faq-question");
+
+faqQuestions.forEach(question => {
+
+    question.addEventListener("click", () => {
+
+        const faqItem =
+            question.parentElement;
+
+        faqItem.classList.toggle("active");
+
+    });
+
+});
+
+for(let i = 0; i < 50; i++){
+
+    const particle =
+        document.createElement("div");
+
+    particle.classList.add("particle");
+
+    particle.style.left =
+        Math.random() * 100 + "vw";
+
+    particle.style.animationDuration =
+        5 + Math.random() * 10 + "s";
+
+    particle.style.opacity =
+        Math.random();
+
+    particle.style.width =
+        particle.style.height =
+        2 + Math.random() * 6 + "px";
+
+    document.getElementById("particles")
+        .appendChild(particle);
+
+}
+
+</script>
 
 </body>
+
 </html>
