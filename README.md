@@ -32,6 +32,7 @@ This tool evaluates password security through entropy calculations, pattern dete
 
 ## Project Structure
 
+```text
 Password_Strength_Analyzer/
 ├── app.py
 ├── analyzer.py
@@ -42,6 +43,7 @@ Password_Strength_Analyzer/
 │   └── index.html
 └── static/
     └── style.css
+```
 
 ## Installation & Setup
 
