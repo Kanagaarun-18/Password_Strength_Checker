@@ -26,7 +26,9 @@ This tool evaluates password security through entropy calculations, pattern dete
 - zxcvbn-python 4.4+
 
 ### Frontend
-- HTML5, CSS3, Vanilla JavaScript
+- HTML5
+- CSS3
+- JavaScript
 
 ## Project Structure
 
@@ -49,99 +51,44 @@ Password_Strength_Analyzer/
 
 ### Step 1: Clone the Repository
 
+```bash
 git clone https://github.com/yourusername/Password_Strength_Analyzer.git
 cd Password_Strength_Analyzer
+```
 
 ### Step 2: Create Virtual Environment
 
 Windows:
+```bash
 python -m venv venv
 venv\Scripts\activate
+```
 
 Mac/Linux:
+```bash
 python3 -m venv venv
 source venv/bin/activate
+```
 
 ### Step 3: Install Dependencies
-
+```bash
 pip install -r requirements.txt
+```
 
 ### Step 4: Run the Application
-
+```bash
 python app.py
+```
 
 ### Step 5: Access the Tool
 
 Open your browser and navigate to:
 http://localhost:5000
 
-## requirements.txt
-
-Flask==2.3.3
-zxcvbn-python==4.4.28
-
-## Usage Examples
-
-| Password | Strength | Crack Time |
-|----------|----------|-------------|
-| password123 | Weak | Instant |
-| P@ssw0rd | Fair | Minutes |
-| BlueSky$42 | Good | Months |
-| Tr0ub4dor&3 | Strong | Centuries |
-| C0rrect-Horse-Battery-Staple | Very Strong | Millennia |
-
-## How It Works
-
-1. Entropy Calculation: Measures password randomness in bits
-2. Pattern Analysis: Detects sequences, repeats, and common structures
-3. Dictionary Check: Compares against 10,000+ common passwords
-4. Attack Simulation: Estimates time to crack using modern hardware
-5. Real-time Feedback: Updates strength meter as you type
-
 ## Security Note
 
 🔒 Your passwords are NEVER stored or transmitted - all analysis happens locally in your browser via JavaScript.
 
-## Deployment Options
-
-### Deploy to Render (Free)
-1. Push code to GitHub
-2. Create new Web Service on Render
-3. Connect repository
-4. Set build command: pip install -r requirements.txt
-5. Set start command: gunicorn app:app
-
-### Deploy to Railway
-
-railway login
-railway init
-railway up
-
-### Deploy to Heroku
-
-heroku create your-app-name
-git push heroku main
-heroku open
-
-## Local Development
-
-To modify the analyzer:
-1. Edit analyzer.py - change strength calculation logic
-2. Edit templates/index.html - modify UI structure
-3. Edit static/style.css - update styling
-4. Refresh browser to see changes
-
-## Troubleshooting
-
-Issue: Port 5000 already in use
-python app.py --port 5001
-
-Issue: zxcvbn not found
-pip install --upgrade zxcvbn-python
-
-Issue: Common passwords not loading
-- Ensure common_passwords.txt is in the root directory
-- File should contain one password per line
 
 ## License
 
